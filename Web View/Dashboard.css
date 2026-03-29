@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default body margin */
+}
+
+body {
+    background-image: url('Image/micro.jpg');
+    background-size: cover; /* This makes sure the image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+
+.container-custom {
+  max-width: 1140px; /* Control max-width for all content, feel free to adjust */
+  width: 100%;
+}
+
+/* Card Hover Effect */
+.card {
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for bg color and transform */
+}
+
+.card:hover {
+  background-color: #f8f9fa; /* Change background color on hover */
+  transform: scale(1.05); /* Slightly scale up the card */
+}
+
+
+.custom-card-height {
+    height: 178px; /* Adjust this value as per your requirement */
+}
+
+/* Ensure the card body content is centered vertically (optional) */
+.custom-card-height .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
