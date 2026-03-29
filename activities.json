@@ -1,0 +1,123 @@
+[
+  {
+    "type": "emergency",
+    "action": "SOS_EMERGENCY",
+    "timestamp": "2026-03-29T13:08:00.303461"
+  },
+  {
+    "type": "health_check",
+    "metric": "heart_rate",
+    "value": 72,
+    "timestamp": "2026-03-29T13:09:03.861099"
+  },
+  {
+    "type": "activity_log",
+    "metric": "steps",
+    "value": 5432,
+    "timestamp": "2026-03-29T13:09:17.812498"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "up",
+    "timestamp": "2026-03-29T13:21:01.938199"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:21:03.071374"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "stop",
+    "timestamp": "2026-03-29T13:21:04.217900"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "down",
+    "timestamp": "2026-03-29T13:21:04.767542"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "left",
+    "timestamp": "2026-03-29T13:21:05.440528"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "down",
+    "timestamp": "2026-03-29T13:28:17.157951"
+  },
+  {
+    "type": "health_check",
+    "metric": "heart_rate",
+    "value": 72,
+    "timestamp": "2026-03-29T13:30:41.652599"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:08.372796"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:08.900852"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:09.422456"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:09.624836"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:09.798384"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:10.000176"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:10.190342"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:10.365860"
+  },
+  {
+    "type": "robot_movement",
+    "direction": "right",
+    "timestamp": "2026-03-29T13:38:10.553239"
+  },
+  {
+    "type": "health_check",
+    "metric": "heart_rate",
+    "value": 67,
+    "timestamp": "2026-03-29T13:38:17.377645"
+  },
+  {
+    "type": "health_check",
+    "metric": "heart_rate",
+    "value": 73,
+    "timestamp": "2026-03-29T13:38:25.570643"
+  },
+  {
+    "type": "health_check",
+    "metric": "heart_rate",
+    "value": 69,
+    "timestamp": "2026-03-29T13:38:31.058427"
+  },
+  {
+    "type": "emergency",
+    "action": "SOS_EMERGENCY",
+    "timestamp": "2026-03-29T13:39:14.749810"
+  }
+]
