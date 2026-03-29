@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoCura - Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #3b6cff;
+            --secondary: #1a2a6c;
+            --card: #f8fbff;
+            --ink: #1f2d3d;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top left, #6e8bff 0%, #4e54c8 45%, #373b9d 100%);
+            min-height: 100vh;
+            color: var(--ink);
+        }
+        .navbar {
+            background: rgba(10, 16, 48, 0.9);
+            backdrop-filter: blur(6px);
+            border-bottom: 2px solid #6e8bff;
+            padding: 0.9rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .logo { color: #fff; font-size: 1.45rem; font-weight: 700; }
+        .nav-links { display: flex; gap: 0.6rem; list-style: none; }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.14); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 1.2rem; }
+        .header { color: #fff; margin-bottom: 1rem; }
+        .header h1 { font-size: 1.9rem; margin-bottom: 0.25rem; }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 1rem;
+        }
+        .stack { display: grid; gap: 1rem; }
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+            padding: 1rem;
+        }
+        .card h2 { color: var(--secondary); margin-bottom: 0.7rem; font-size: 1.2rem; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(120px, 1fr));
+            gap: 0.6rem;
+        }
+        .stat {
+            background: #eef4ff;
+            border-radius: 10px;
+            padding: 0.7rem;
+            text-align: center;
+        }
+        .stat .k { color: #5a6683; font-size: 0.82rem; }
+        .stat .v { color: var(--primary); font-size: 1.4rem; font-weight: 800; margin-top: 0.15rem; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+        .chart {
+            background: #eef4ff;
+            border-radius: 10px;
+            padding: 0.6rem;
+        }
+        .chart h3 { margin-bottom: 0.45rem; color: #27304a; font-size: 0.98rem; }
+        .chart-box {
+            height: 170px;
+            border-radius: 8px;
+            background: #f5f8ff;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 0.4rem;
+            padding: 0.5rem;
+        }
+        .bar {
+            min-width: 22px;
+            background: linear-gradient(180deg, #5e7dff 0%, #3248c8 100%);
+            border-radius: 5px 5px 0 0;
+            color: #fff;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.7rem;
+        }
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 0.58rem 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #fff;
+            background: var(--primary);
+        }
+
+        .activity-list { list-style: none; display: grid; gap: 0.5rem; }
+        .activity-item {
+            border-left: 3px solid #5e7dff;
+            background: #eef4ff;
+            border-radius: 8px;
+            padding: 0.6rem 0.7rem;
+        }
+        .type {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            color: #fff;
+            background: #4a6bff;
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+        }
+        .content { font-weight: 600; margin-bottom: 0.2rem; }
+        .time { color: #68738a; font-size: 0.82rem; }
+
+        .empty { color: #7f8aa0; text-align: center; padding: 0.8rem; }
+
+        @media (max-width: 1180px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 860px) {
+            .stats-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .navbar { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">NeoCura Dashboard</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/services">Services</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>Activity and Health Overview</h1>
+            <p>Compact summary without long log scrolling</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stack">
+                <div class="card">
+                    <h2>Quick Stats</h2>
+                    <div class="stats-grid">
+                        <div class="stat"><div class="k">Latest Heart Rate</div><div class="v" id="latest-hr">--</div></div>
+                        <div class="stat"><div class="k">Latest Steps</div><div class="v" id="today-steps">--</div></div>
+                        <div class="stat"><div class="k">Total Activities</div><div class="v" id="total-activities">0</div></div>
+                        <div class="stat"><div class="k">Last Time</div><div class="v" id="last-activity" style="font-size:1rem">--</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Mini Trends</h2>
+                    <div class="charts-grid">
+                        <div class="chart">
+                            <h3>Heart Rate</h3>
+                            <div class="chart-box" id="heart-rate-chart"><div class="empty">No data</div></div>
+                        </div>
+                        <div class="chart">
+                            <h3>Steps</h3>
+                            <div class="chart-box" id="steps-chart"><div class="empty">No data</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stack">
+                <div class="card">
+                    <h2>Recent Activities (Last 4)</h2>
+                    <div class="toolbar">
+                        <button class="btn" onclick="refreshData()">Refresh</button>
+                        <button class="btn" onclick="window.location.href='/services'">Open Services</button>
+                    </div>
+                    <ul class="activity-list" id="activities-list">
+                        <li class="empty">No activities recorded yet</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Need Full Data?</h2>
+                    <p>Use the Services page for export, communication, reminders, and advanced tools. Dashboard stays clean for quick monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allActivities = [];
+        let healthData = {};
+
+        window.addEventListener('DOMContentLoaded', function() {
+            refreshData();
+            setInterval(refreshData, 6000);
+        });
+
+        function refreshData() {
+            fetch('/activities')
+                .then(response => response.json())
+                .then(data => {
+                    allActivities = Array.isArray(data) ? data : [];
+                    displayActivities(allActivities);
+                    updateStats();
+                })
+                .catch(() => {
+                    document.getElementById('activities-list').innerHTML = '<li class="empty">Failed to load activities</li>';
+                });
+
+            fetch('/health/data')
+                .then(response => response.json())
+                .then(data => {
+                    healthData = data || {};
+                    updateCharts();
+                });
+        }
+
+        function displayActivities(activities) {
+            const listContainer = document.getElementById('activities-list');
+            if (!activities.length) {
+                listContainer.innerHTML = '<li class="empty">No activities recorded yet</li>';
+                return;
+            }
+
+            const latestFour = activities.slice(-4).reverse();
+            listContainer.innerHTML = latestFour.map(function(activity) {
+                const date = new Date(activity.timestamp);
+                const timeStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                let content = 'Activity recorded';
+
+                if (activity.type === 'robot_movement') content = 'Robot moved ' + activity.direction;
+                else if (activity.type === 'health_check' || activity.type === 'activity_log') content = activity.metric + ': ' + activity.value;
+                else if (activity.type === 'emergency') content = 'Emergency: ' + activity.action;
+
+                return '<li class="activity-item">'
+                    + '<span class="type">' + activity.type.replaceAll('_', ' ').toUpperCase() + '</span>'
+                    + '<div class="content">' + content + '</div>'
+                    + '<div class="time">' + timeStr + '</div>'
+                    + '</li>';
+            }).join('');
+        }
+
+        function updateStats() {
+            document.getElementById('total-activities').textContent = allActivities.length;
+
+            if (allActivities.length > 0) {
+                const lastActivity = new Date(allActivities[allActivities.length - 1].timestamp);
+                document.getElementById('last-activity').textContent = lastActivity.toLocaleTimeString();
+            }
+
+            const hr = (healthData.heart_rate || []);
+            const steps = (healthData.steps || []);
+
+            if (hr.length) document.getElementById('latest-hr').textContent = hr[hr.length - 1].value;
+            if (steps.length) document.getElementById('today-steps').textContent = steps[steps.length - 1].value;
+        }
+
+        function updateCharts() {
+            renderBars('heart-rate-chart', (healthData.heart_rate || []).slice(-5), 'value', 120);
+            renderBars('steps-chart', (healthData.steps || []).slice(-5), 'value', 130);
+        }
+
+        function renderBars(id, data, key, maxHeight) {
+            const el = document.getElementById(id);
+            if (!data.length) {
+                el.innerHTML = '<div class="empty">No data</div>';
+                return;
+            }
+
+            const max = Math.max.apply(null, data.map(function(item) { return item[key]; }));
+            el.innerHTML = data.map(function(item) {
+                const h = Math.max(18, Math.round((item[key] / max) * maxHeight));
+                return '<div class="bar" style="height:' + h + 'px">' + item[key] + '</div>';
+            }).join('');
+        }
+    </script>
+</body>
+</html>
+
